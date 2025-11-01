@@ -45,7 +45,10 @@
       cursor: pointer;
       font-size: 12px;
     }
-    .btn-pdf:active { transform: translateY(1px); }
+
+    .btn-pdf:active {
+      transform: translateY(1px);
+    }
 
     .universidad {
       display: flex;
@@ -171,7 +174,6 @@
         <div><strong>Banco</strong></div>
         <div>Fecha: 01/11/2025</div>
         <div>Referencia: <span class="referencia">01928796</span></div>
-        <div><button class="btn-pdf" data-filename="recibo_pago_ucc">Descargar PDF</button></div>
       </div>
     </div>
 
@@ -237,7 +239,6 @@
         <div><strong>Banco</strong></div>
         <div>Fecha: 01/11/2025</div>
         <div>Referencia: <span class="referencia">01928796</span></div>
-        <div><button class="btn-pdf" data-filename="recibo_pago_ucc">Descargar PDF</button></div>
       </div>
     </div>
 
@@ -299,7 +300,6 @@
         <div><strong>Banco</strong></div>
         <div>Fecha: 01/11/2025</div>
         <div>Referencia: <span class="referencia">01928796</span></div>
-        <div><button class="btn-pdf" data-filename="recibo_pago_ucc">Descargar PDF</button></div>
       </div>
     </div>
 
@@ -460,18 +460,18 @@
           // filename from data attribute or default
           var filename = (btn.dataset && btn.dataset.filename) ? btn.dataset.filename : 'recibo_pago_ucc';
           var opt = {
-            margin:       0.25,
-            filename:     filename + '.pdf',
-            image:        { type: 'jpeg', quality: 0.98 },
-            html2canvas:  { scale: 2, useCORS: true },
-            jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+            margin: 0.25,
+            filename: filename + '.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2, useCORS: true },
+            jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
           };
           // temporarily ensure white background for PDF
           var originalBg = recibo.style.background;
           recibo.style.background = '#ffffff';
           html2pdf().set(opt).from(recibo).save().then(function () {
             recibo.style.background = originalBg;
-          }).catch(function(){ recibo.style.background = originalBg; });
+          }).catch(function () { recibo.style.background = originalBg; });
         });
       });
     });
